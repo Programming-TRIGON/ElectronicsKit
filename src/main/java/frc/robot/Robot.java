@@ -23,7 +23,8 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
+  public static final OneMotor oneMotor;
+  public static final TwoMotors twoMotors;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -33,6 +34,9 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    OneMotor = new oneMotor(new VictorSP(0));
+    TwoMotors = new twoMotors(new VictorSP(0), new VictorSP(1));
+    
   }
 
   /**
