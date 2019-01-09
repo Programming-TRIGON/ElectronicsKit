@@ -10,7 +10,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveTwoMotors extends Command {
-  public MoveTwoMotors() {
+  double power;
+
+  public MoveTwoMotors(double power) {
+    requires (Robot.twoMotors);
+    this.power = power
+
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -23,6 +28,7 @@ public class MoveTwoMotors extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    twoMotors.moveBoth(power)
   }
 
   // Make this return true when this Command no longer needs to run execute()
