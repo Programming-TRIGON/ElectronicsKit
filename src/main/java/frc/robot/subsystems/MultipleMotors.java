@@ -18,6 +18,7 @@ public class MultipleMotors extends Subsystem implements SimpleSubsystem{
 
   public MultipleMotors(SpeedController[] motors){
     this.motors = motors;
+    motors[0].setInverted(true);
   }
 
   public void move(double power){

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.DigitalSource;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,17 +21,17 @@ import frc.robot.subsystems.MultipleMotors;
 
 
 public class Robot extends TimedRobot {
-  VictorSP [] motors= new VictorSP[2];
-  MultipleMotors ss;
+  static final MultipleMotors ss= new MultipleMotors(new VictorSP[] {new VictorSP(0), new VictorSP(1)});
   OI oi = new OI();
   
   @Override
   public void robotInit() {
-    motors[0] = new VictorSP(14);
-    motors[1] = new VictorSP(15);
+    Robot.ss.initDefaultCommand(new JoystickMove(ss, this.oi.xbox));
+  }
 
-    this.ss = new MultipleMotors(motors);
-    this.ss.initDefaultCommand(new JoystickMove(ss, this.oi.xbox));
+  @Override
+  public void teleopPeriodic() {
+    Scheduler.getInstance().run();
   }
 }
 
