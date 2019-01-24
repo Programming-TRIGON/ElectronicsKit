@@ -7,26 +7,26 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalSource;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.JoystickMove;
+import frc.robot.subsystems.DoubleSolenoidSubsystem;
 import frc.robot.subsystems.MultipleMotors;
 
 
 public class Robot extends TimedRobot {
-  static final MultipleMotors ss= new MultipleMotors(new VictorSP[] {new VictorSP(0), new VictorSP(1)});
   OI oi = new OI();
-  
+  static final Compressor compressor = new Compressor();
+  static final MultipleMotors multipleMotors = new MultipleMotors(new VictorSP[] {new VictorSP(0), new VictorSP(1)});
+  public static final DoubleSolenoidSubsystem doubleSolenoidSubsystem = new DoubleSolenoidSubsystem(new DoubleSolenoid(0, 1));
   @Override
+
   public void robotInit() {
-    Robot.ss.initDefaultCommand(new JoystickMove(ss, this.oi.xbox));
+    Robot.multipleMotors.initDefaultCommand(new JoystickMove(multipleMotors, this.oi.xbox));
+    compressor.start();
   }
 
   @Override
