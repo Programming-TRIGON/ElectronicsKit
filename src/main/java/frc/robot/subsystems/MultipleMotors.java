@@ -14,12 +14,16 @@ import frc.robot.subsystems.SimpleSubsystem;
 
 public class MultipleMotors extends Subsystem implements SimpleSubsystem{
   SpeedController[] motors;
-
+  SpeedController motor;
   public MultipleMotors(SpeedController[] motors){
     this.motors = motors;
     motors[0].setInverted(true);
   }
-
+  
+  public MultipleMotors(SpeedController speedController){
+    this.motors = speedController;
+    motors[0].setInverted(true);
+  }
   public void move(double power){
     for (SpeedController m : this.motors) {
       m.set(power);
