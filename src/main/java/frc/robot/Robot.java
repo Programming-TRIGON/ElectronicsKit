@@ -20,7 +20,7 @@ import frc.robot.subsystems.MultipleMotors;
 public class Robot extends TimedRobot {
   OI oi = new OI();
   static final Compressor compressor = new Compressor();
-  static final MultipleMotors multipleMotors = new MultipleMotors(new VictorSP[] {new VictorSP(0)});
+  static final MultipleMotors multipleMotors = new MultipleMotors(new VictorSP[] {new VictorSP(0), new VictorSP(1)});
   public static final DoubleSolenoidSubsystem doubleSolenoidSubsystem = new DoubleSolenoidSubsystem(new DoubleSolenoid(0, 1));
   @Override
 
